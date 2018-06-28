@@ -2,26 +2,23 @@ package test.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Date;
 import java.util.Random;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-/*
- * 오늘의 운세를 출력할 서블릿
- */
-public class ShowFortuneServlet extends HttpServlet{
+
+public class greetServlet extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		//오늘의 운세 목록
-		String[] list= {"동쪽으로 가면 귀인을 만나요",
-				"로또를 사면 좋은 결과가 있을 거예요",
-				"저녁에 치맥을 먹게 될거예요",
-				"다가오늘 주말에 이상형을 만나게 되요",
-				"집에가는 길에 비를 맞을거예요"
+		//오늘의 인사
+		String[] list= {"안녕하세요",
+				"감사해요",
+				"잘있어요",
+				"다시만나요",
+				"룰루룰루"
 		};
 		// 0 ~ 4 사이의 랜덤한 정수 얻어내기
 		int index=new Random().nextInt(5);
@@ -39,11 +36,11 @@ public class ShowFortuneServlet extends HttpServlet{
 	    pw.println("<html>");
 	    pw.println("<head>");
 	    pw.println("<meta charset='utf-8'/>");
-	    pw.println("<title>오늘의운세</title>");
+	    pw.println("<title>오늘의인사</title>");
 	    pw.println("</html>");
 	    pw.println("<body>");
-	    pw.println("<h3>오늘의운세 페이지</h3>");
-	    pw.print("<p> 운세: <strong>"+fortune+"</Strong></p>");
+	    pw.println("<h3>오늘의인사 페이지</h3>");
+	    pw.print("<p> 인사: <strong>"+fortune+"</Strong></p>");
 	    pw.println("</body>");
 	    pw.println("</html>");
 	    pw.close();

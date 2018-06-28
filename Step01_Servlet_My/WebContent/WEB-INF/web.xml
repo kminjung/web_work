@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" version="3.1">
   <display-name>Step01_Servlet</display-name>
-  <welcome-file-list>
+  <welcome-file-list> <!-- 어떤파일을 응답할지 -->
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
     <welcome-file>index.jsp</welcome-file>
@@ -17,7 +17,7 @@
   <!-- 서블릿 맵핑하기 -->
   <servlet-mapping>
   	<servlet-name>showTimeServlet</servlet-name>
-  	<url-pattern>/showtime</url-pattern>
+  	<url-pattern>/showtime</url-pattern> <!-- /showtime 요청이 왔을 때 -->
   </servlet-mapping>
   
   <servlet>
@@ -34,9 +34,19 @@
   	<servlet-name>myServlet</servlet-name>
   	<servlet-class>test.servlet.MyServlet</servlet-class>
   </servlet>
-  <!-- myServlet 맵핑하기(어떤요청에 대해서 myServlet 을 사용할지) -->
+  <!-- myServlet 맵핑하기(어떤요청에 대해서 myServlet 을 사용할지) --><!-- 여러개의 요청을 하나의 서블릿이 받아서 분배처리를 해준다. -->
   <servlet-mapping>
   	<servlet-name>myServlet</servlet-name>
   	<url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+  
+  <!-- greetServlet 정의하기 -->
+  <servlet>
+  	<servlet-name>greetServlet</servlet-name>
+  	<servlet-class>test.servlet.greetServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>greetServlet</servlet-name>
+  	<url-pattern>/greetServlet</url-pattern>
   </servlet-mapping>
 </web-app>
