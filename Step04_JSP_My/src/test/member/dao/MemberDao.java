@@ -14,7 +14,7 @@ public class MemberDao {
 	private static MemberDao dao;
 	private MemberDao() {}
 	public static MemberDao getInstance() {
-		if(dao==null) {
+		if(dao==null) {//싱글톤 , 객체를 하나만 생성하기 위해서임
 			dao=new MemberDao();
 		}
 		return dao;
