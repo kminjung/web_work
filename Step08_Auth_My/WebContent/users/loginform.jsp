@@ -9,7 +9,7 @@
 <body>
 <%
 	//로그인후 이동할 url 정보를 읽어온다. 
-	String url=request.getParameter("url");
+	String url=request.getParameter("url");  // ?url=/market/but.jsp
 	if(url==null){//만약 전달되지 않았으면
 		//인덱스 페이지로 이동 되도록 한다. 
 		url=request.getContextPath()+"/";

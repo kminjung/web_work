@@ -14,49 +14,51 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /*
- *  중간에 요청을 가로채서 특정 동작을 하기 위한 클래스
+ *  중간에 요청을 가로채서 특정 동작을 하기 위한 클래스 
  *  
- *  만드는 방법
- *  1. javax.servlet.Filter 인터페이스를 구현한다.
- *  2. Filter 의 동작을 맵핑한다.
+ *  1. javax.servlet.Filter 인터 페이스를 구현한다.
+ *  2. Filter 의 동작을 맵핑한다.  
  */
-@WebFilter({"/market/*","/users/private/*"})
-public class LoginFilter implements Filter{
+
+//2. 
+@WebFilter({"/market/*","/users/private/*"}) // 필터링을 여러개 할 때 String배열{}로 요청경로를 여러개 가지면 된다.
+public class LoginFilter implements Filter{//1.implements - 도구 / 특별한 일을 할 수 있는 객체가 된다.
+		//빨간 오류 났을 때 마우스 대기				// 요청을 가로채서 로그인 했는지 안했는지 검증한다.
 	
-	//빨간 오류 났을 때 마우스 대기
 	@Override
 	public void destroy() {
-		
+		// TODO Auto-generated method stub
 		
 	}
 
+		//필터가 동작될 때 호출되는 메소드 
 	@Override // 요청이 왔을 때 거치는 곳 1.
-	public void doFilter(ServletRequest req, ServletResponse res,
+	public void doFilter(ServletRequest req, ServletResponse res, 
 			FilterChain chain)
 			throws IOException, ServletException {
 		//필터에 요청이 걸리면 실행이 이쪽으로 온다.
-		System.out.println("doFilter()...");
+		System.out.println("doFilter() ...");
 		
 		//원래 type 으로 casting
 		HttpServletRequest request=(HttpServletRequest)req;
 		HttpServletResponse response=(HttpServletResponse)res;
 		
-		//context path
+		//context path 
 		String cPath=request.getContextPath();
-		//현재 요청된 url 정보를 읽어온다.(원래 이동하려던 목적지)
+		//현재 요청된 url 정보를 읽어온다.(원래 이동하려던 목적지) 
 		String url=request.getRequestURI();
 		
-		//세션 객체를 얻어와서
+		//세션 객체를 얻어와서 / 핵심로직
 		HttpSession session=request.getSession();
 		//id 가 저장되어 있는지 읽어와본다.
 		String id=(String)session.getAttribute("id");
 		if(id==null) {//로그인 안했으면
 			//로그인 페이지로 이동하라고 리다일렉트 응답을 준다.
-			response.sendRedirect(cPath+"/users/loginform.jsp?url="+url);
-		}else {//로그인 했을 때 하던 동작을 계속 하라
+			response.sendRedirect(cPath+"/users/loginform.jsp?url="+url); // sendRedirect - 응답
+		}else {
+			// 요청의 흐름 계속 진행 시키기 
 			chain.doFilter(req, res);
 		}
-		
 	}
 
 	@Override
@@ -66,3 +68,7 @@ public class LoginFilter implements Filter{
 	}
 	
 }
+/*
+ *  - ServletRequest 를 상속받아서 만든 것이 HttpServletRequest
+ */
+

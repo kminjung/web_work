@@ -4,7 +4,7 @@
     pageEncoding="UTF-8"%>
 <%
 	//폼 전송되는 회원 정보를 추출해서
-	request.setCharacterEncoding("utf-8");
+	//request.setCharacterEncoding("utf-8"); 필터만 가져다 두면 필요없다.
 	String id=request.getParameter("id");
 	String pwd=request.getParameter("pwd");
 	String email=request.getParameter("email");
@@ -13,7 +13,7 @@
 	dto.setId(id);
 	dto.setPwd(pwd);
 	dto.setEmail(email);
-	boolean isSuccess=UsersDao.getInstance().insert(dto);
+	boolean isSuccess=UsersDao.getInstance().insert(dto);//dao 를 이용해서 저장한 것
 	//응답하기
 %>
 <!DOCTYPE html>

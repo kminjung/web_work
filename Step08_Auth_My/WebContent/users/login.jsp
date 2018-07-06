@@ -12,7 +12,7 @@
 	dto.setId(id);
 	dto.setPwd(pwd);
 	//로그인 성공여부 
-	boolean isLoginSuccess=UsersDao.getInstance().isValid(dto);
+	boolean isLoginSuccess=UsersDao.getInstance().isValid(dto);//dao 메소드 전달
 	// 유효한 정보이면 로그인 처리를 하고 로그인 성공이라고 응답
 	// 유효한 정보가 아니면 아이디 혹은 비밀번호가 잘못되었다고 응답
 %>

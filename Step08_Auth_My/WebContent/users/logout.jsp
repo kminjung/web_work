@@ -17,7 +17,7 @@
 <script>
 	alert("로그아웃 되었습니다.");
 	location.href="<%=cPath%>/";
-	// ↑ 돌아가고 싶을 때
+	// ↑ 인덱스(/)로 돌아가고 싶을 때
 </script>
 </body>
 </html>
