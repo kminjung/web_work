@@ -19,22 +19,22 @@ public class GalleryDao {
 		}
 		return dao;
 	}
-	//이미지 정보 저장하는 메소드
-	public boolean insert (GalleryDto dto) {
+	
+	public boolean insert(GalleryDto dto) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		int flag = 0;
 		try {
 			conn = new DbcpBean().getConn();
 			//실행할 sql 문 작성하기
-			String sql = "INSERT INTO board_gallery"
-					+ " (num, writer,caption,imagePath,regdate)"
+			String sql = "INSERT INTO board_gallery "
+					+ " (num,writer,caption,imagePath,regdate)"
 					+ " VALUES(board_gallery_seq.NEXTVAL,?,?,?,SYSDATE)";
 			pstmt = conn.prepareStatement(sql);
 			//? 에 바인딩할 내용 결정하기 
 			pstmt.setString(1, dto.getWriter());
 			pstmt.setString(2, dto.getCaption());
-			pstmt.setString(3, dto.getImagePath());//num 은 시퀀스를 통해 넣는다.
+			pstmt.setString(3, dto.getImagePath());
 			flag = pstmt.executeUpdate();
 		} catch (SQLException se) {
 			se.printStackTrace();
@@ -52,32 +52,30 @@ public class GalleryDao {
 		} else {
 			return false;
 		}
-		
 	}
-	
-	
-	// 이미지 목록보기
 	public List<GalleryDto> getList(){
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		//select 된 결과를 담을 지역변수 만들기
+		//select 된 결과를 담을 지역변수 만들기 
 		List<GalleryDto> list=new ArrayList<>();
 		try {
 			conn = new DbcpBean().getConn();
-			//실행할 select문
-			String sql = "SELECT num,writer,caption,imagePath,regdate FROM board_gallery;"
+			//실행할 select 문 
+			String sql = "SELECT num,writer,caption,imagePath,regdate"
+					+ " FROM board_gallery"
 					+ " ORDER BY num DESC";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
-			//반복문 돌면서 ResultSet 에 있는 내용 추출
+			//반복문 돌면서 ResultSet 에 있는 내용 추출 
 			while (rs.next()) {
-			GalleryDto dto=new GalleryDto();
-			dto.setNum(rs.getInt("num"));
-			dto.setWriter(rs.getString("writer"));
-			dto.setCaption(rs.getString("caption"));
-			dto.setImagePath(rs.getString("imagePath"));
-			dto.setRegdate(rs.getString("regdate"));
+				GalleryDto dto=new GalleryDto();
+				dto.setNum(rs.getInt("num"));
+				dto.setWriter(rs.getString("writer"));
+				dto.setCaption(rs.getString("caption"));
+				dto.setImagePath(rs.getString("imagePath"));
+				dto.setRegdate(rs.getString("regdate"));
+				list.add(dto);
 			}
 		} catch (SQLException se) {
 			se.printStackTrace();
@@ -93,5 +91,5 @@ public class GalleryDao {
 			}
 		}//try
 		return list;
-	}//getlist()
+	}//getList()
 }//class

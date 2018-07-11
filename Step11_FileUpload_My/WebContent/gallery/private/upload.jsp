@@ -39,8 +39,8 @@
 	//DB 에 저장한다.
 	boolean isSuccess=GalleryDao.getInstance().insert(dto);//GalleryDao를 이용해 업로드된 이미지 정보를 DB 에 저장하겠다.
 	//응답	
-	String cPath=request.getContextPath();
-	response.sendRedirect(cPath+"/gallery/list.jsp");
+		String cPath=request.getContextPath();
+		response.sendRedirect(cPath+"/gallery/list.jsp");
 %>
 
 

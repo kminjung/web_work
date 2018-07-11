@@ -1,4 +1,3 @@
-
 <%@page import="test.gallery.dao.GalleryDao"%>
 <%@page import="test.gallery.dto.GalleryDto"%>
 <%@page import="java.util.List"%>
@@ -23,7 +22,7 @@
 	<h3>사진 Gallery 입니다.</h3>
 	<hr/>
 	<%for(GalleryDto tmp:list){%>
-	<div class="col-xs-6 col-xs-3">
+	<div class="col-xs-6 col-sm-3">
 		<h4><%=tmp.getCaption() %></h4>
 		<img src="<%=cPath%><%=tmp.getImagePath()%>" 
 			class="img-responsive img-thumbnail"/>
