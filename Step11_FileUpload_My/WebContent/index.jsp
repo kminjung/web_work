@@ -12,7 +12,7 @@
 %>
 <%if(id!=null){ %>
 	<p><strong><%=id %></strong>님 로그인중</p>
-	<a href="users/logput.jsp"></a>
+	<a href="users/logout.jsp"></a>
 <%}else { %>
 	<a href="users/loginform.jsp">로그인</a>
 <%} %>

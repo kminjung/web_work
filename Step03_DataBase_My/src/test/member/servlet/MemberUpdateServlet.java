@@ -19,16 +19,20 @@ public class MemberUpdateServlet extends HttpServlet{
 			HttpServletResponse response) throws ServletException, IOException {
 		//전송되는 한글 깨지지 않도록 
 		request.setCharacterEncoding("utf-8");
+		
 		//폼 전송되는 수정할 회원의 정보를 읽어온다.
 		int num=Integer.parseInt(request.getParameter("num"));
 		String name=request.getParameter("name");
 		String addr=request.getParameter("addr");
+		
 		//MemberDto 객체에 회원의 정보를 담고
 		MemberDto dto=new MemberDto(num, name, addr);
 		//DB 에 수정 반영하고
 		MemberDao dao=MemberDao.getInstance();
 		dao.update(dto);
 		//응답한다.
+		
+		
 		//응답 인코딩 설정
 		response.setCharacterEncoding("utf-8");
 		//응답 컨텐츠 설정

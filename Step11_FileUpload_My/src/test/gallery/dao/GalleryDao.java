@@ -34,7 +34,7 @@ public class GalleryDao {
 			//? 에 바인딩할 내용 결정하기 
 			pstmt.setString(1, dto.getWriter());
 			pstmt.setString(2, dto.getCaption());
-			pstmt.setString(3, dto.getImagePath());
+			pstmt.setString(3, dto.getImagePath());//num 은 시퀀스를 통해 넣는다.
 			flag = pstmt.executeUpdate();
 		} catch (SQLException se) {
 			se.printStackTrace();
@@ -66,9 +66,9 @@ public class GalleryDao {
 		try {
 			conn = new DbcpBean().getConn();
 			//실행할 select문
-			String sql = "SELECT num,writer,caption,imagePath,regdate FROM board_gallery;";
+			String sql = "SELECT num,writer,caption,imagePath,regdate FROM board_gallery;"
+					+ " ORDER BY num DESC";
 			pstmt = conn.prepareStatement(sql);
-			//?에 값 바인딩
 			rs = pstmt.executeQuery();
 			//반복문 돌면서 ResultSet 에 있는 내용 추출
 			while (rs.next()) {
@@ -91,7 +91,7 @@ public class GalleryDao {
 					conn.close();
 			} catch (Exception e) {
 			}
-		}
+		}//try
 		return list;
-	}
-}
+	}//getlist()
+}//class

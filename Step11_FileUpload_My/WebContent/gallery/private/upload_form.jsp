@@ -18,3 +18,6 @@
 </form>
 </body>
 </html>
+<!-- 
+	input type="file" 이면  enctype="multipart/form-data"가 반드시 있어야 한다.
+ -->

@@ -1,7 +1,6 @@
+
 <%@page import="test.gallery.dao.GalleryDao"%>
 <%@page import="test.gallery.dto.GalleryDto"%>
-<%@page import="test.file.dao.FileDao"%>
-<%@page import="test.file.dto.FileDto"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -14,51 +13,29 @@
 </head>
 <body>
 <%
+	//1.이미지 목록을 얻어온다.
 	List<GalleryDto> list=GalleryDao.getInstance().getList();
-	//세션에 저장된 아이디
-	//로그인하지 않았으면 null 이다.
-	String id=(String)session.getAttribute("id");
-	if(id==null){
-		id="";
-	}
+	//컨텍스트 경로
 	String cPath=request.getContextPath();
 %>
 <div class="container">
-	<%if(id!=null && !id.equals("")) {%>
-	<p><strong><%=id %></strong>로그인중..</p>
-	<%}else {%>
-	
-	<%} %>
-	<a href="private/upload_form.jsp">사진올리기</a><!-- 로그인 한 사람만 -->
+	<a href="private/upload_form.jsp">사진 올리기</a>
 	<h3>사진 Gallery 입니다.</h3>
-	<table class="table table-bordered">
-		<thead>
-			<tr>
-				<td>번호</td>
-				<td>작성자</td>
-				<td>제목</td>
-				<td>경로</td>
-				<td>등록일</td>
-				
-			</tr>
-		</thead>
-		<tbody>
-			<%for(GalleryDto tmp:list) {%>
-			<tr>
-				<td><%=tmp.getNum() %></td>
-				<td><%=tmp.getWriter() %></td>
-				<td><%=tmp.getCaption() %></td>
-				<td><%=tmp.getImagePath() %></td>
-				<td><%=tmp.getRegdate() %></td>
-				<td>
-					<%if(id.equals(tmp.getWriter())) {%><!-- 세션아이디 == 글작성자 -->
-						<a href="javascript:deleteConfirm(<%=tmp.getNum()%>)">삭제</a>
-					<%} %>
-				</td>
-			</tr>
-			<%} %>
-		</tbody>
-	</table>
+	<hr/>
+	<%for(GalleryDto tmp:list){%>
+	<div class="col-xs-6 col-xs-3">
+		<h4><%=tmp.getCaption() %></h4>
+		<img src="<%=cPath%><%=tmp.getImagePath()%>" 
+			class="img-responsive img-thumbnail"/>
+		<p>
+			작성자:<strong><%=tmp.getWriter() %></strong><br/>
+			등록일:<strong><%=tmp.getRegdate() %></strong>
+		</p>
+	</div>
+	<%} %>
 </div>
 </body>
 </html>
+<!-- 
+	1. 출력하려면 image 목록이 있어야 함
+ -->
