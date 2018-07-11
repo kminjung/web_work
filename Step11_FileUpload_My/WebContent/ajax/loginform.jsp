@@ -36,13 +36,13 @@
 	<button type="submit">로그인</button>
 </form>
 <div class="result">
-	
+	<!-- 여기에 ajax 옴 -->
 </div>
 <script src="${pageContext.request.contextPath }/resources/js/jquery-3.3.1.js"></script>
 <script>//페이지 로딩되는 시점
 		$("#myForm").submit(function(){
 		//폼에 입력한 값을 serialize 문자열로 읽어내기 /폼을 제출했을 때 실행 ↓
-		//id=xxx?wpd=xxx.. 
+		//id=xxx?pwd=xxx.. 
 		var param=$(this).serialize();
 		// name 속성을 이용해서 id(파라미터 name)=xxx(파라미터 value)?wpd=xxx..형태의 문자열을 만들어낸다.
 		console.log(param);
@@ -51,7 +51,7 @@
 		$.ajax({
 			url:"login.jsp", //요청경로
 			method:"post", //요청 메소드
-			data: param, //요청 파라미터 
+			data: param, //요청 파라미터 / 폼에 입력한 것
 			success: function(responseData){ //응답 데이터 
 				console.log(responseData);
 				$(".result").text(responseData);
