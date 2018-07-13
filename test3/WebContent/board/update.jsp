@@ -30,6 +30,6 @@
 <%}else{ %>
 	<p>글 수정 실패!</p>
 <%} %>
-<a href="../index.jsp">글 목록 보기</a>
+<a href="../index.jsp#blog">글 목록 보기</a>
 </body>
 </html>

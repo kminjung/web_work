@@ -21,7 +21,7 @@ import javax.servlet.http.HttpSession;
  */
 
 //2. 		    /* 이 곳은 로그인을 해야 접근할 수 있다.*/
-@WebFilter({"/users/private/*","/file/private/*","/gallery/private/*"})
+@WebFilter({"/board/updateform.jsp","/board/insertform.jsp"})
 // 필터링을 여러개 할 때 String배열{}로 요청경로를 여러개 가지면 된다.배열의 방마다 문자열을 가지고 있는 것
 public class LoginFilter implements Filter{//1.implements - 도구 / 특별한 일을 할 수 있는 객체가 된다.
 		//빨간 오류 났을 때 마우스 대기				// 요청을 가로채서 로그인 했는지 안했는지 검증한다.

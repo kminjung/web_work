@@ -27,7 +27,7 @@
 <body>
 <%if(isSuccess){ %>
 	<p><strong><%=writer %></strong> 님의 글이 저장 되었습니다.</p>
-	<a href="../index.jsp">글 목록 보기</a>
+	<a href="../index.jsp#blog">글 목록 보기</a>
 <%}else{ %>
 	<p>글정보 저장 실패!</p>
 	<a href="insertform.jsp">새글 작성폼</a>

@@ -1,3 +1,5 @@
+<%@page import="test.file.dao.FileDao"%>
+<%@page import="test.file.dto.FileDto"%>
 <%@page import="test.board.dao.BoardDao"%>
 <%@page import="java.util.List"%>
 <%@page import="test.board.dto.BoardDto"%>
@@ -13,7 +15,7 @@
 	<meta name="author" content="">
 	<link href="css/bootstrap-responsive.css" rel="stylesheet">
 	<link href="css/style.css" rel="stylesheet">
-	<link href="color/default.css" rel="stylesheet">
+	<link href="css/default.css" rel="stylesheet">
 	<link rel="shortcut icon" href="img/favicon.ico">
 	<link rel="stylesheet" href="dropzone/dropzone.css" />
 </head>
@@ -27,7 +29,7 @@
 					<!-- Responsive navbar -->
 					<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
 				</a>
-					<h1 class="brand"><a href="index.html">Maxim</a></h1>
+					<h1 class="brand"><a href="#">Maxim</a></h1>
 					<!-- navigation -->
 					<nav class="pull-right nav-collapse collapse">
 						<%
@@ -45,7 +47,6 @@
 								<li><a title="blog" href="#blog">Blog</a></li>
 								<li><a title="upload" href="#upload">Upload</a></li>
 								<li><a title="contact" href="#contact">Contact</a></li>
-								<li><a href="page.html">Page</a></li>
 								<li><a href="users/private/info.jsp"><p><strong><%=id %></strong>님 로그인중</p></a></li>
 								<li><a href="users/logout.jsp">logout</a></li>
 							</ul>
@@ -59,7 +60,7 @@
 								<li><a title="upload" href="#upload">Upload</a></li>
 								<li><a title="contact" href="#contact">Contact</a></li>
 								<li><a href="users/loginform.jsp">login</a></li>
-								<li><a href="page.html">Page</a></li>
+								
 							</ul>
 						<%} %>			
 					</nav>
@@ -451,42 +452,41 @@
 	//글 목록 불러오기
 	List<BoardDto> list=BoardDao.getInstance().getList();
 	%>
-
-		<div class="container">
-			<h4>Blog  board</h4>
-			<!-- blog table -->
-			<div class="row">
-				<table class="table table-bordered">
-					<thead>
-						<tr>
-							<th>글번호</th>
-							<th>제목</th>
-							<th>작성자</th>
-							<th>등록일</th>
-							<th>삭제</th>
-						</tr>
-					</thead>
-					<tbody>
-					<%for(BoardDto tmp:list){ %>
-						<tr>
-							<td><%=tmp.getNum() %></td>
-							<td><a href="board/detail.jsp?num=<%=tmp.getNum() %>"><%=tmp.getTitle() %></a></td>
-							<td><%=tmp.getWriter() %></td>
-							<td><%=tmp.getRegdate() %></td>
-							<td>
-								
-							</td>		
-						</tr>
-					<%} %>
-					</tbody>
-				</table>	
-			</div>
-			</div>
-			<div class="blankdivider30"></div>
-			<div class="aligncenter">
-				<a href="board/insertform.jsp" class="btn btn-large btn-theme">Blog Write</a>
-			</div>
+	<div class="container">
+		<h4>Blog  board</h4>
+		<!-- blog table -->
+		<div class="row">
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>글번호</th>
+						<th>제목</th>
+						<th>작성자</th>
+						<th>등록일</th>
+					</tr>
+				</thead>
+				<tbody>
+				<%for(BoardDto tmp:list){ %>
+					<tr>
+						<td><%=tmp.getNum() %></td>
+						<td><a href="board/detail.jsp?num=<%=tmp.getNum() %>"><%=tmp.getTitle() %></a></td>
+						<td><%=tmp.getWriter() %></td>
+						<td><%=tmp.getRegdate() %></td>
+					</tr>
+				<%} %>
+				</tbody>
+			</table>	
 		</div>
+	</div>
+		<div class="blankdivider30"></div>
+		<div class="aligncenter">
+			<a href="board/insertform.jsp" class="btn btn-large btn-theme" id="Bbtn">Blog Write</a>
+			<script>
+			
+			</script>
+		</div>
+		
+	</div>
 	</section>
 	<!-- end spacer blog -->
 	
@@ -499,16 +499,7 @@
 					<input type="file" name="myFile" />
 				</form>
 
-				<script>
-				
-					//Dropzone.options.폼의아이디={옵션명:옵션값}
-					Dropzone.options.myForm={
-							paramName:"myFile",
-							success:function(file,responseData){//{업로드된 파일에 대한 정보, 응답된 데이터}
-								console.log(responseData)
-							}
-					}
-				</script>
+
 
 		</div>
 	</section>
@@ -600,7 +591,7 @@
 	<script src="js/inview.js"></script>
 	<script src="js/animate.js"></script>
 	<script src="js/custom.js"></script>
-	<script src="contactform/contactform.js"></script>
+	<script src="js/contactform/contactform.js"></script>
 	<script src="${pageContext.request.contextPath }/resources/js/jquery-3.3.1.js"></script>
 	<script src="${pageContext.request.contextPath }/resources/js/jquery.form.min.js"></script>
 

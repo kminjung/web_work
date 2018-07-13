@@ -9,6 +9,21 @@
 	BoardDto dto=BoardDao.getInstance().getData(num);
 	//3. 글 수정 폼을 응답한다. 
 %>
+<%
+	//쿠키에 저장된 아이디를 담을 변수
+	String savedId="";
+
+	Cookie[] cooks=request.getCookies();
+	if(cooks!=null&&cooks.length>0){
+		for(Cookie tmp:cooks){
+			//savedId 라는 쿠키명으로 저장된 값이 있으면
+			if(tmp.getName().equals("savedId")){
+				//변수에 저장된 아이디값을 담는다.
+				savedId=tmp.getValue();
+			}
+		}
+	}
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,11 +35,12 @@
 <form action="update.jsp" method="post">
 	<input type="hidden" name="num" value="<%=dto.getNum() %>" />
 	<label for="num">번호</label>
-	<input type="text" id="num" value="<%=dto.getNum()%>" 
+	<input type="text" id="num" value="<%=dto.getWriter() %>" 
 		disabled/><br/>
-	<label for="writer">작성자</label>
-	<input type="text" name="writer" id="writer"
-		value="<%=dto.getWriter() %>"/><br/>
+	<input type="hidden" name="writer" value="<%=dto.getWriter() %>" />
+	<label for="text">작성자</label>
+	<input type="text" id="writer" value="<%=dto.getWriter() %>" 
+		disabled/><br/>			
 	<label for="title">제목</label>
 	<input type="text" name="title" id="title" 
 		value="<%=dto.getTitle() %>"/><br/>
