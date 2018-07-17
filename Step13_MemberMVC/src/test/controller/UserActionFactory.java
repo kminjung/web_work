@@ -23,7 +23,10 @@ public class UserActionFactory {//의 참조값이 필요하면 getInstance를 �
 		public Action action(String command){
 			//Action 추상클래스 type 을 담을 지역변수 만들기 
 			Action action=null;
-			if(command.equals("/member/list")) {
+			if(command.equals("/home")) {
+				//홈 요청 처리
+				action=new HomeAction();
+			}else if(command.equals("/member/list")) {
 				//회원 목록 요청 처리 
 				action=new MemberListAction();
 			}else if(command.equals("/member/insertform")) {

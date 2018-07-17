@@ -33,10 +33,19 @@
 			<td><%=tmp.getName() %></td>
 			<td><%=tmp.getAddr() %></td>
 			<td><a href="updateform.do?num=<%=tmp.getNum()%>">수정</a></td>
-			<td><a href="delete.do?num=<%=tmp.getNum()%>">삭제</a></td><!-- 삭제를 하려면 숫자가 있어야함 -->
+			<td><a href="javascript:deleteConfirm(<%=tmp.getNum()%>)">삭제</a></td><!-- 삭제를 하려면 숫자가 있어야함 -->
 		</tr>
 	<%} %>
 	</tbody>
 </table>
+<a href="<%=request.getContextPath()%>/home.do">Home</a>
+<script>
+	function deleteConfirm(num){
+		var isDelete=confirm(num+" 번 파일을 삭제 하시겠습니까?");
+		if(isDelete){
+			location.href="delete.do?num="+num;
+		}
+	}
+</script>
 </body>
 </html>
