@@ -5,7 +5,18 @@
 
 	response.sendRedirect(cPath+"/home.do"); //home.do 로 리다일렉트 된다.
 %>
-<%	
+<%
+	//			비즈니스 로직은 Action 에서 처리
+	//home.do  >  HomeAction  >  /views/home.jsp	 >  /home
+	//		request 	forward,move 		  response
+	//	   			forward - 응답을 위임시킨다
+	
+	
+	//vew 페이지에서 request 영역에 담긴 내용을 가져오고 싶을 땐(추출) ${requestScope.key}
+	//			 session 영역에 담긴 내용 			(추출)  ${sessionScope.key}
+	//			  파라미터 영역에 담긴 내용을 가져오고 싶을 땐  (추출)  ${param.name}
+		
+	
 	//1.users/signup_form.do
 	//1-1 SignupFormAction
 	
@@ -35,7 +46,22 @@
 	// UserActionFactory
 	// logout.jsp
 
-
+	// UsersInfoAction
+	// UserActionFactory
+	// info.jsp
+	
+	
+	//update.jsp
+	//
+	
+	//UsersDeleteAction
+	//delete.jsp
+	
+	
+	
+	// UsersUpdateFormAction
+	// 
+	// updateform.jsp
 	//1-2-3-4-5 UserActionFactory
 	
 		

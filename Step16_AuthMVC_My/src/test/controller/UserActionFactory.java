@@ -7,6 +7,10 @@ import test.users.action.LoginFormAction;
 import test.users.action.LogoutAction;
 import test.users.action.SignupAction;
 import test.users.action.SignupFormAction;
+import test.users.action.UsersDeleteAction;
+import test.users.action.UsersInfoAction;
+import test.users.action.UsersUpdateAction;
+import test.users.action.UsersUpdateFormAction;
 
 public class UserActionFactory {//의 참조값이 필요하면 getInstance를 부르면 된다.
 	private static UserActionFactory factory;
@@ -39,7 +43,16 @@ public class UserActionFactory {//의 참조값이 필요하면 getInstance를 �
 			action=new LoginAction();
 		}else if(command.equals("/users/logout")) {
 			action=new LogoutAction();
+		}else if(command.equals("/users/private/info")) {
+			action=new UsersInfoAction();
+		}else if(command.equals("/users/private/updateform")) {
+			action=new UsersUpdateFormAction();
+		}else if(command.equals("/users/private/update")) {
+			action=new UsersUpdateAction();
+		}else if(command.equals("/users/private/delete")) {
+			action=new UsersDeleteAction();
 		}
+		
 		return action;
 	}
 }
