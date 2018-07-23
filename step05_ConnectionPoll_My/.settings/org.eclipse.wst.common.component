@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="step05_ConnectionPoll_My">
+    <wb-module deploy-name="Step05_ConnectionPoll_My">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <property name="context-root" value="step05_ConnectionPoll_My"/>
-        <property name="java-output-path" value="/step05_ConnectionPoll_My/build/classes"/>
+        <property name="java-output-path" value="/Step05_ConnectionPoll_My/build/classes"/>
+        <property name="context-root" value="Step05_ConnectionPoll_My"/>
     </wb-module>
 </project-modules>
