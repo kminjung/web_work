@@ -55,7 +55,7 @@ public class LoginFilter implements Filter{//1.implements - 도구 / 특별한 �
 		String id=(String)session.getAttribute("id");//세션의 아이디를 가져온다.
 		if(id==null) {//로그인 안했으면
 			//로그인 페이지로 이동하라고 리다일렉트 응답을 준다.
-			response.sendRedirect(cPath+"/users/loginform.jsp?url="+url); // sendRedirect - 응답
+			response.sendRedirect(cPath+"/users/loginform.do?url="+url); // sendRedirect - 응답
 		}else {
 			// 요청의 흐름 계속 진행 시키기 
 			chain.doFilter(req, res);

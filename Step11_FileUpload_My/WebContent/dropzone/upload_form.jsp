@@ -10,8 +10,20 @@
 </head>
 <body>
 <h3>dropzone js 테스트</h3>
-<form action="upload.jsp" method="post" class="dropzone" id="myForm">
+<form action="upload.jsp" method="post"
+	class="dropzone" id="myForm" enctype="multipart/form-data">
+		
 	<input type="file" name="myFile" />
+	
 </form>
+<script>
+	//Dropzone.options.폼의아이디={옵션명:옵션값}
+	Dropzone.options.myForm={
+			paramName:"myFile",
+			success:function(file,responseData){//{업로드된 파일에 대한 정보, 응답된 데이터}
+				console.log(responseData)
+			}
+	}
+</script>
 </body>
 </html>
