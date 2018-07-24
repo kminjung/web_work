@@ -26,7 +26,7 @@
 
 <h3>request 에 담긴 내용을 반복문 돌면서 출력</h3>
 <ul>
-	<c:forEach var="tmp" items="${msgs }">
+	<c:forEach var="tmp" items="${msgs }"> 
 		<li>${tmp }</li>
 	</c:forEach>
 </ul>
