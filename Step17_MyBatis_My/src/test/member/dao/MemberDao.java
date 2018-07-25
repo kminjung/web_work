@@ -18,7 +18,7 @@ public class MemberDao {
 	public static MemberDao getInstance() {
 		if(dao==null) {
 			dao=new MemberDao();
-			factory=SqlMapConfig.getSqlSession(); //*
+			factory=SqlMapConfig.getSqlSession(); //* factory의 참조값을 얻어내고 
 		}
 		return dao;
 	}
@@ -31,7 +31,7 @@ public class MemberDao {
 			// .openSession(auto commit 자동커밋 여부) 
 			session = factory.openSession(true); // true 전달하지 않으면 commit 이 안됨.
 			// .insert("mapper이름.sql아이디, 파라미터 (type) )
-			flag=session.insert("member.insert", dto);
+			flag=session.insert("member.insert", dto); //세션을 통해서 DB 에 작업을 한다.
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -65,7 +65,7 @@ public class MemberDao {
 		int flag = 0;
 		try {
 			session = factory.openSession(true);
-			session.delete("member.delete", num);
+			flag=session.delete("member.delete", num);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

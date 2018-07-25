@@ -19,13 +19,11 @@ public class MemberDeleteAction extends Action{
 		// DB 에서 해당 회원 삭제
 		MemberDao.getInstance().delete(num);
 		
-		//삭제 후 redirect 이동시키려면?
+		//삭제후 redirect 이동 시키려면?
 		ActionForward af=new ActionForward("/member/list.do");//1.경로 정하고
-		af.setRedirect(true);  //2. true 하면  ↑ 로 이동한다.
+		af.setRedirect(true);//2. true 하면  ↑ 로 이동한다.
 		
 		return af;
-		
-		
 	}
 
 }

@@ -9,10 +9,10 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 /*
- * 	EncodignFilter 는 post 방식 파라미터 전송 했을 때 한글이 깨지지 않도록 인코딩 설정을
- *  자동으로 해주는 역할을 한다.
+ *  EncodingFilter 는 post 방식 파라미터 전송했을때
+ *  한글이 깨지지 않도록 인코딩 설정을 자동으로 해주는 역활을 한다.
  *  
- *  필터의 동작 맵핑(@Webservlet)은 WEB-INF/web.xml 문서에 되어 있다.
+ *  필터의 동작 맵핑은 WEB-INF/web.xml 문서에 되어 있다. 
  */
 public class EncodingFilter implements Filter{
 	//필드
@@ -46,7 +46,7 @@ public class EncodingFilter implements Filter{
 			</init-param>
 		 */
 		//읽어온 문자열을 맴버필드에 저장한다. 
-		encoding=config.getInitParameter("encoding");// 여기에 참조되는 내용은 utf-8 xml 문서에 정의한 것을 잃어온 것
+		encoding=config.getInitParameter("encoding");
 	}
 
 }

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="file">
+
+	<!-- 자주 사용하는 sql 문을 미리 정의해 놓기 0724-->
+	<sql id="fileColumn">
+		num,writer,title,downCount,saveFileName,
+				orgFileName,fileSize,
+				TO_CHAR(regdate, 'YYYY.MM.DD AM HH:MI') AS regdate
+	</sql>
+	
+	<delete id="delete" parameterType="int">
+		DELETE FROM board_file
+		WHERE num=#{num}
+	</delete>
+	<update id="addDownCount" parameterType="int">
+		UPDATE board_file
+		SET downCount=downCount+1
+		WHERE num=#{num}
+	</update>
+	<select id="getData" parameterType="int"
+		resultType="fileDto">
+		SELECT <include refid="fileColumn"/>
+		FROM board_file
+		WHERE num=#{num}
+	</select>
+	
+	<insert id="insert" parameterType="fileDto">
+		INSERT INTO board_file
+		(num,writer,title,downCount,orgFileName,saveFileName,
+			fileSize,regdate)
+		VALUES(board_file_seq.NEXTVAL,#{writer},#{title},
+		#{downCount}, #{orgFileName}, #{saveFileName}, #{fileSize},
+			SYSDATE)
+	</insert>
+	
+	<select id="getList" parameterType="FileDto"
+		resultType="test.file.dto.FileDto"> 
+		SELECT * <!-- 3 / * 최종적으로 선택되는 칼럼명은 9개다.-->
+		FROM (SELECT result1.*, ROWNUM rnum<!-- SELECT 2 / where 에서 사용하려고 rownum 을 붙인것.-->
+			  FROM (SELECT <include refid="fileColumn"/>
+					FROM board_file
+					ORDER BY num DESC ) result1 <!-- () 은 서브쿼리가 됨 / 정렬 -->
+			  )
+		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}<!-- 출력 FileDto 와 이름이 같아야 한다.-->
+	</select>
+	<!-- 여기서는 몇번부터 몇번까지 출력할지. / () 한 이유 - 셀렉트 된 결과를 하나의 table 로 보는 것-->
+	
+	<select id="getCount" resultType="int">
+		SELECT NVL(MAX(ROWNUM), 0) 
+		FROM board_file
+	</select>
+</mapper>
