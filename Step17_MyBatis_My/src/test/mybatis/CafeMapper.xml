@@ -2,12 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cafe">
 	
-	<sql id="cafeColumn">
+	<sql id="cafeColumn"> <!-- 자주 사용하는 문자열이 있으면 id 를 붙여놓고 인클루드 해서 쓸 수 있다. -->
 		num,writer,title,content,viewCount,
 		TO_CHAR(regdate,'YYYY.MM.DD AM HH:MI') AS regdate
 	</sql>
 
-	<insert id="insert" parameterType="cafeDto">
+	<insert id="insert" parameterType="cafeDto"><!-- configuration 에 별칭을 정해놔서 cafeDto 를 쓸 수 있는 것 -->
 		INSERT INTO board_cafe
 		(num, writer, title, content, viewCount, regdate)
 		VALUES(board_cafe_seq.NEXTVAL, #{writer}, #{title},
@@ -15,7 +15,7 @@
 	</insert>
 	
 	<select id="getCount" parameterType="cafeDto" resultType="int">
-		SELECT NVL(MAX(ROWNUM), 0)
+		SELECT NVL(MAX(ROWNUM), 0) <!-- 제일 큰 번호를 얻어내는 것, null 일 때 0(기본값) 이다. -->
 		FROM board_cafe
 		<where>
 			<if test="writer != null">
@@ -38,7 +38,7 @@
 		FROM (SELECT result1.*, ROWNUM rnum
 			  FROM ( SELECT <include refid="cafeColumn"/>
 					FROM board_cafe
-					<where>
+					<where><!-- 페이징 처리를 하기 위한 목록을 얻어오는 것 -->
 						<if test="writer != null">
 							OR writer LIKE '%'||#{writer}||'%'  <!-- 오라클에서 연결연산자 → || -->
 						</if>
@@ -56,14 +56,14 @@
 	
 	<select id="getData" parameterType="cafeDto" 
 		resultType="cafeDto">
-		SELECT result1.*
-		FROM ( SELECT <include refid="cafeColumn"/>,
-				LAG(num, 1, 0) OVER(ORDER BY num DESC) prevNum, <!-- 번호에서 하나 뒤쳐진 것 -->
-				LEAD(num, 1, 0) OVER(ORDER BY num DESC) nextNum <!-- 하나 앞선 것 -->
+		SELECT result1.* <!-- 별칭 -->
+		FROM ( SELECT <include refid="cafeColumn"/>,<!-- 카페 글 상세보기 select -->
+				LAG(num, 1, 0) OVER(ORDER BY num DESC) prevNum, <!-- num 은 select 된 것/번호에서 1내림차순 했을 때 1 뒤로가기 -->
+				LEAD(num, 1, 0) OVER(ORDER BY num DESC) nextNum <!-- 하나 앞선 것 0 은 리턴해 줄게 없을 때 디폴트값-->
 			 FROM board_cafe
-	 		<where>
+	 		<where><!-- 검색한 것의 키워드 의 이전,다음글 을 하기 위한 것-->
 				<if test="writer != null">
-					OR writer LIKE '%'||#{writer}||'%'  <!-- 오라클에서 연결연산자 → || -->
+					OR writer LIKE '%'||#{writer}||'%'  <!-- 오라클에서 연결연산자 → || 정규표현식 -->
 				</if>
 				<if test="title != null">
 					OR title LIKE '%'||#{title}||'%'

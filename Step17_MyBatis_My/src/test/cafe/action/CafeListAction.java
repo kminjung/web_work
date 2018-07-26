@@ -48,14 +48,15 @@ public class CafeListAction extends Action{
 			request.setAttribute("keyword", keyword);
 		}
 		
-		//보여줄 페이지의 번호
-		int pageNum=1;
+		//보여줄 페이지의 번호 0724 페이징처리
+		int pageNum=1; // 페이지의 초기값
 		//보여줄 페이지의 번호가 파라미터로 전달되는지 읽어온다.
-		String strPageNum=request.getParameter("pageNum");
+		String strPageNum=request.getParameter("pageNum");//request.getParameter은 무조건 문자열로 리턴한다.
 		if(strPageNum != null){//페이지 번호가 파라미터로 넘어온다면
 			//페이지 번호를 설정한다.
 			pageNum=Integer.parseInt(strPageNum);
 		}
+		//페이징 처리를 위한 로직
 		//보여줄 페이지 데이터의 시작 ResultSet row 번호
 		int startRowNum=1+(pageNum-1)*PAGE_ROW_COUNT;
 		//보여줄 페이지 데이터의 끝 ResultSet row 번호

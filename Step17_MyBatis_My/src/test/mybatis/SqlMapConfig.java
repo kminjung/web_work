@@ -13,7 +13,7 @@ public class SqlMapConfig {
 	//static 초기화 블럭 (초기화 설정이 되는 곳) SqlSessionFactory 을 잘 만들기 위해서 static에서 준비작업을 한다.
 	static{ // 스테틱 필드
 		//MyBatis 설정 xml 문서의 위치 
-		String resource="test/mybatis/Configuration.xml"; /* ←  읽어들여서 ↓ 초기화 설정한 것*/
+		String resource="test/mybatis/Configuration.xml"; /* ←  읽어들여서 ↓ 초기화 설정한 것 오류 있으면 데이터가 안불러와진다. 오류가뜨면 어기서 확인하기*/
 		try{
 			Reader reader=Resources.getResourceAsReader(resource);
 			//SqlSessionFactory 객체의 참조값을 얻어내서 맴버필드에 저장

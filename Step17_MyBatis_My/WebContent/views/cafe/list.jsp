@@ -55,8 +55,8 @@
 				<td>${tmp.viewCount }</td>
 				<td>${tmp.regdate }</td>
 				<td>
-					<c:if test="${tmp.writer eq id }">
-						<a href="javascript:deleteConfirm(${tmp.num })">삭제</a>
+					<c:if test="${tmp.writer eq id }"><!-- 작성자가 id 랑 같으면 삭제링크 출력 하겠다.-->
+						<a href="javascript:deleteConfirm(${tmp.num })">삭제</a><!-- 조건부 -->
 					</c:if>
 				</td>
 			</tr>

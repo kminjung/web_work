@@ -39,12 +39,20 @@ public class CafeDetailAction extends Action{
 		dto.setNum(num);
 		
 		//2. CafeDao 를 이용해서 글정보를 읽어와서
-		CafeDto resultdto=CafeDao.getInstance().getData(dto);
+		CafeDto resultdto=CafeDao.getInstance().getData(dto); //키워드 검색 인해서 dto 에 담은 것
 		// 글 조회수 올리기
 		CafeDao.getInstance().addViewCount(num);
 	
 		//3. request 에 담고
 		request.setAttribute("dto", resultdto);
+		//로그인 여부 확인해서 request 에 담기  / 0726 댓글달기 로그인
+		String id=(String)request.getSession().getAttribute("id");
+		boolean isLogin=false;
+		if(id!=null) {
+			isLogin=true;
+		}
+		request.setAttribute("isLogin", isLogin);
+		
 		//4. view 페이지로 forward 이동해서 응답 
 		return new ActionForward("/views/cafe/detail.jsp");
 	}
