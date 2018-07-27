@@ -6,7 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>/views/cafe/detail.jsp</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap.css" />
 <style>
 	.content{
 		width: 766px;
@@ -34,17 +33,6 @@
 	.muted{
 		color: #888;
 	}
-	textarea{
-		width:35%;
-		height:100;
-		border:1;
-		overflow:visible;
-		text-overflow:ellipsis;
-		resize: none; 
-	}
-	.content{
-		widthp
-	}
 </style>
 </head>
 <body>
@@ -69,7 +57,7 @@
 		}
 	</script>
 </c:if>
-<table class="table table-striped">
+<table>
 	<tr>
 		<th>글번호</th>
 		<td>${dto.num }</td>
@@ -84,7 +72,6 @@
 	</tr>
 </table>
 <div class="content">${dto.content }</div>
-
 <a href="list.do">목록 보기</a>
 <!-- 댓글에 관련된 UI --> <!-- 댓글 0727-->
 <div class="comments">
@@ -104,8 +91,6 @@
 				<br />
 				<i class="muted">${tmp.target_id }</i>
 			</c:if>
-			
-			<!-- 삭제를 했을 때 바로 테이블을 삭제할 것이 아니라  '삭제 된 댓글입니다.' 라고 출력하는것이 좋음 -->
 			
 			<pre>${tmp.content }</pre>
 			<form action="comment_insert.do" method="post"><!-- 숨겨져 있다가 반복문 돌면서 답글을 눌렀을 때 폼이 나오게 -->	
@@ -157,12 +142,6 @@
 	
 	// 답글 링크를 눌렀을 때 실행할 함수 등록 
 	$(".comment .reply_link").click(function(){
-		if($(this).text()=="답글"){
-			$(this).text("취소");
-		}else{
-			$(this).text("답글");
-		}
-		
 		$(this)
 		.parent()
 		.find("form")

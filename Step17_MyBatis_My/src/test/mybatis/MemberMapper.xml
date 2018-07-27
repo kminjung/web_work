@@ -5,7 +5,7 @@
 		INSERT INTO member
 		(num, name, addr)
 		VALUES(member_seq.NEXTVAL, #{name}, #{addr}) <!-- dto 에 있는 name,addr / dao 에서 설정 하고 와야함-->
-	</insert>	
+	</insert>	<!-- dto 에 있는 name,addr 을 가져와서 쓰겠다는 양식이 #{}다. -->
 	
 	<update id="update" parameterType="memberDto">
 		UPDATE member

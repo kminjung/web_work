@@ -26,7 +26,7 @@ public class HomeAction extends Action{
 		//모델을 request 에 담는다.
 		request.setAttribute("msgs", msgs);
 		
-		// view 페이지로 forward 이동
+		// view 페이지로 forward 이동해서 보여준다.
 		return new ActionForward("/views/home.jsp");
 	}
 

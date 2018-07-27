@@ -10,7 +10,7 @@ public class ActionForward {
 	private boolean isRedirect;
 	//생성자
 	public ActionForward(String path) {
-		this.path = path;
+		this.path = path; // 인자로 받아온 path 를 쓰겠다.*
 	}
 	//생성자2
 	public ActionForward(String path, boolean isRedirect) {

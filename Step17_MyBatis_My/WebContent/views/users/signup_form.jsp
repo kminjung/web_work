@@ -42,7 +42,7 @@
 			method:"post",
 			data:{"inputId":inputId},
 			success:function(responseData){
-				//뭐가 응답되는지 콘솔에 출력해 보기 
+				//뭐가 응답되는지 콘솔에 출력해 보기  / success - 성공 ,  responseData - 응답데이터
 				console.log(responseData);
 				// responseData 는 object 이다.
 				// {canUse:true} 또는 {canUse:false}

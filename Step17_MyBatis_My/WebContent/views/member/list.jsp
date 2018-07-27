@@ -23,7 +23,7 @@
 		</tr>
 	</thead>
 	<tbody>
-	<c:forEach var="tmp" items="${list }">
+	<c:forEach var="tmp" items="${list }"> 
 		<tr>
 			<td>${tmp.num }</td>
 			<td>${tmp.name }</td>
