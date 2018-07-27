@@ -64,7 +64,7 @@ public class MemberDao {
 		SqlSession session = null;
 		int flag = 0;
 		try {
-			session = factory.openSession(true);
+			session = factory.openSession(true); 
 			flag=session.delete("member.delete", num);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -101,7 +101,7 @@ public class MemberDao {
 		SqlSession session=null;
 		List<MemberDto> list=null;
 		try {
-			session=factory.openSession();
+			session=factory.openSession(); // factory 내부적으로 mapper 를 사용할 수 있도록 설정되어 있음
 			/*
 			 *  Mapper namespace : member
 			 *  sql id : getList
