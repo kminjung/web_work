@@ -21,7 +21,7 @@ import javax.servlet.http.HttpSession;
  */
 
 //2. 		    /* 이 곳은 로그인을 해야 접근할 수 있다.*/
-@WebFilter({"/users/private/*","/file/private/*","/cafe/private/*"})
+@WebFilter({"/users/private/*","/file/private/*","/cafe/private/*","/gallery/private/*"})
 // 필터링을 여러개 할 때 String배열{}로 요청경로를 여러개 가지면 된다.배열의 방마다 문자열을 가지고 있는 것
 public class LoginFilter implements Filter{//1.implements - 도구 / 특별한 일을 할 수 있는 객체가 된다.
 		//빨간 오류 났을 때 마우스 대기				// 요청을 가로채서 로그인 했는지 안했는지 검증한다.
@@ -45,7 +45,7 @@ public class LoginFilter implements Filter{//1.implements - 도구 / 특별한 �
 		HttpServletResponse response=(HttpServletResponse)res;
 		
 		//context path 
-		String cPath=request.getContextPath();
+		String cPath=request.getContextPath(); //문맥의 경로
 		//현재 요청된 url 정보를 읽어온다.(원래 이동하려던 목적지) 
 		String url=request.getRequestURI();
 		

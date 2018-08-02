@@ -21,6 +21,7 @@
 	<li><a href="member/list.do">member 테이블 목록 보기</a></li>
 	<li><a href="file/list.do">자료실 목록 보기</a></li>
 	<li><a href="cafe/list.do">카페글 목록 보기</a></li>
+	<li><a href="gallery/list.do">사진 겔러리</a></li>
 </ul>
 	
 <h3>공지 사항 입니다.</h3>

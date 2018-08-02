@@ -14,6 +14,9 @@ import test.file.action.FileDownloadAction;
 import test.file.action.FileListAction;
 import test.file.action.FileUploadAction;
 import test.file.action.FileUploadFormAction;
+import test.gallery.action.GalleryListAction;
+import test.gallery.action.GalleryUploadAction;
+import test.gallery.action.GalleryUploadFormAction;
 import test.member.action.MemberDeleteAction;
 import test.member.action.MemberInsertAction;
 import test.member.action.MemberInsertformAction;
@@ -42,7 +45,7 @@ public class UserActionFactory {//의 참조값이 필요하면 getInstance를 �
 		return factory;
 	}
 	
-	//인자로 전달되는 command 를 수행할 Action type 객체를 리턴해주는 
+	//인자로 전달되는 command(명령) 를 수행할 Action type 객체를 리턴해주는 
 	//메소드
 	public Action action(String command){
 		//Action 추상클래스 type 을 담을 지역변수 만들기 
@@ -114,7 +117,15 @@ public class UserActionFactory {//의 참조값이 필요하면 getInstance를 �
 			action=new CafeUpdateAction();
 		}else if(command.equals("/cafe/comment_insert")) {
 			action=new CafeCommentInsertAction();
+			
+		}else if(command.equals("/gallery/list")) {
+			action=new GalleryListAction();
+		}else if(command.equals("/gallery/private/upload_form")) {
+			action=new GalleryUploadFormAction();
+		}else if(command.equals("/gallery/private/upload")) {
+			action=new GalleryUploadAction();
 		}
+
 		
 		return action;
 	}
